@@ -1,0 +1,70 @@
+﻿@model Registration
+@{
+    ViewData["Title"] = "New Course Registration";
+
+}<h3>@ViewData["Title"]</h3>
+<hr />
+<form asp-action="Create">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="container">
+        <div class="mb-2">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="EmailId" class="control-label"></label>
+            <input asp-for="EmailId" class="form-control" />
+            <span asp-validation-for="EmailId" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="DOB" class="control-label"></label>
+            <input asp-for="DOB" class="form-control" />
+            <span asp-validation-for="DOB" class="text-danger"></span>
+        </div>
+        
+        <div class="mb-2">
+            <label class="control-label" >Course</label>
+            <select asp-for="CourseId" class="form-control" id="CourseList" asp-items="ViewBag.Courses">
+
+                <option>--select course--</option>
+
+            </select>
+            <div id="Display Course Details"></div>
+            @section Scripts
+            {
+                <script>
+                    $("#CourseList").change(function () {
+                        var v = $(this).val();
+                        $.getJSON("/Home/GetCourseStartDate?Name=" + v, function (data) {
+                            console.log(data);
+                            $("#DisplayCourse").append('<label>' + data + '</label>');
+                </script>
+
+            }
+
+            <label>
+                <input type="checkbox" id="termsCheckbox" required>
+                I agree to the terms and conditions
+            </label>
+            <br />
+            
+
+        </div>
+        <input type="submit" value="Submit"  class=" btn btn-primary btn-sm " />
+        <script>
+            showAlert('Success: Your action was completed successfully.', 'success');
+        </script>
+
+        <input type="reset" value="Cancel" class=" btn btn-danger btn-sm " />
+    </div>
+    <br />
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+</form>

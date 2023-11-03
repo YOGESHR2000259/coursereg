@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Registration>
+@{
+    ViewData["Title"] = "Students Registered";
+}
+<h3>@ViewData["Title"]</h3>
+<p>
+    <a asp-action="Create" class="btn btn-primary btn-sm">New Registration</a>
+</p>
+<table class="table table-bordered table-responsive table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EmailId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Courses.Name)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var registration in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => registration.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => registration.LastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => registration.EmailId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => registration.DOB)
+                    </td>
+                    
+                    <td>
+                        @Html.DisplayFor(model => registration.Courses.Name)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@registration.Id" class="btn btn-success ctn-sm">Edit</a>
+
+
+                        <a asp-action="Details" asp-route-id="@registration.Id" class="btn btn-primary ctn-sm">Details</a>
+
+                        <a asp-action="Delete" asp-route-id="@registration.Id" class="btn btn-danger ctn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">
+                    <div>
+                        No Registrations Till Now.
+                    </div>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

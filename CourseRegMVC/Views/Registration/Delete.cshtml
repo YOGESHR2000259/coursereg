@@ -1,0 +1,45 @@
+﻿@model Registration
+@{
+    ViewData["Title"] = "Delete ";
+}
+<h3>@ViewData["Title"]</h3>
+<hr />
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <div class="container">
+        <div class="mb-2">
+            <label asp-for="FirstName" class="control-label"></label>
+            <input asp-for="FirstName" class="form-control" readonly />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="LastName" class="control-label"></label>
+            <input asp-for="LastName" class="form-control" readonly />
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="EmailId" class="control-label"></label>
+            <input asp-for="EmailId" class="form-control" readonly />
+            <span asp-validation-for="EmailId" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label asp-for="DOB" class="control-label"></label>
+            <input asp-for="DOB" class="form-control" readonly />
+            <span asp-validation-for="DOB" class="text-danger"></span>
+        </div>
+        <div class="mb-2">
+            <label class="control-label">Course</label>
+            <select asp-for="CourseId" class="form-control" asp-items="ViewBag.Courses" disabled>
+                <option>--Select Course--</option>
+
+            </select>
+
+        </div>
+        <input type="submit" value="Delete" class=" btn-Danger " />
+    </div>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+
+</form>
